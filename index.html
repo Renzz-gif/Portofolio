@@ -1,0 +1,773 @@
+<style>
+    /* --- DESIGN SYSTEM & VARIABLES --- */
+    :root {
+        --bg-color: #fbf9f5;
+        --surface-color: #ffffff;
+        --accent-color: #8c6d46;
+        --accent-hover: #6e5434;
+        --text-primary: #1a1918;
+        --text-secondary: #5a5854;
+        --border-color: #e8e2d8;
+        --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+        --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+        --font-heading: 'Cormorant Garamond', serif;
+        --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* --- RESET --- */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .brand-logo {
+        font-family: var(--font-heading);
+        font-weight: 600;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+    }
+
+    /* --- NAVBAR --- */
+    header {
+        position: sticky;
+        top: 0;
+        background: rgba(251, 249, 245, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 100;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .brand-logo {
+        font-size: 1.6rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        color: var(--accent-color);
+    }
+
+    /* --- HERO & ARTIST PROFILE SECTION --- */
+    .artist-hero {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 5rem 2rem 4rem;
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .artist-photo-container {
+        position: relative;
+    }
+
+    .artist-photo-frame {
+        width: 100%;
+        height: 480px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        position: relative;
+        background-color: var(--border-color);
+    }
+
+    .artist-photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .artist-photo-frame:hover img {
+        transform: scale(1.03);
+    }
+
+    .photo-tag {
+        position: absolute;
+        bottom: -15px;
+        right: -15px;
+        background: var(--surface-color);
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        font-family: var(--font-heading);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--accent-color);
+    }
+
+    .artist-bio {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .artist-label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+
+    .artist-name {
+        font-size: 3.5rem;
+        line-height: 1.1;
+        color: var(--text-primary);
+    }
+
+    .artist-statement {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: var(--text-secondary);
+        border-left: 3px solid var(--accent-color);
+        padding-left: 1.2rem;
+        margin: 0.5rem 0;
+    }
+
+    .artist-description {
+        font-size: 1rem;
+        color: var(--text-secondary);
+    }
+
+    .artist-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item h4 {
+        font-size: 2rem;
+        color: var(--text-primary);
+        font-family: var(--font-heading);
+    }
+
+    .stat-item p {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+
+    /* --- GALLERY SECTION --- */
+    .gallery-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem 6rem;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+        color: var(--text-secondary);
+    }
+
+    /* GALLERY FILTER BUTTONS */
+    .filter-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        padding: 0.6rem 1.5rem;
+        border-radius: 30px;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+        background-color: var(--text-primary);
+        color: var(--surface-color);
+        border-color: var(--text-primary);
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2.5rem;
+    }
+
+    .art-card {
+        background: var(--surface-color);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .art-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .art-img-wrapper {
+        position: relative;
+        height: 320px;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: #eee;
+    }
+
+    .art-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .art-card:hover .art-img {
+        transform: scale(1.05);
+    }
+
+    .art-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .art-card:hover .art-overlay {
+        opacity: 1;
+    }
+
+    .overlay-text {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 500;
+        background: rgba(0,0,0,0.6);
+        padding: 0.5rem 1.2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+    }
+
+    .art-info {
+        padding: 1.5rem;
+    }
+
+    .art-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+        color: var(--text-primary);
+    }
+
+    .art-meta {
+        font-size: 0.85rem;
+        color: var(--accent-color);
+        font-weight: 500;
+        margin-bottom: 0.8rem;
+    }
+
+    .art-desc {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .btn-inquire {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0.8rem;
+        background-color: var(--text-primary);
+        color: var(--surface-color);
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-inquire:hover {
+        background-color: var(--accent-color);
+    }
+
+    /* --- EXHIBITIONS SECTION --- */
+    .exhibitions-section {
+        background-color: #f3efe6;
+        padding: 5rem 2rem;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .exhibitions-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .exhibition-list {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .exhibition-item {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        align-items: center;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .exhibition-year {
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+
+    .exhibition-title {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .exhibition-venue {
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+    }
+
+    .exhibition-type {
+        font-size: 0.8rem;
+        background: rgba(0,0,0,0.05);
+        padding: 0.3rem 0.8rem;
+        border-radius: 12px;
+        color: var(--text-secondary);
+    }
+
+    /* --- FOOTER / CONTACT --- */
+    footer {
+        background-color: #141312;
+        color: #d5d1cb;
+        padding: 5rem 2rem 3rem;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .footer-brand h3 {
+        font-size: 2.2rem;
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+        color: #8a8680;
+        max-width: 400px;
+    }
+
+    .footer-column h4 {
+        font-size: 1.1rem;
+        color: #fff;
+        margin-bottom: 1.2rem;
+        font-family: var(--font-body);
+    }
+
+    .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a {
+        color: #8a8680;
+        transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: #fff;
+    }
+
+    .copyright {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        border-top: 1px solid #282624;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #66635f;
+    }
+
+    /* --- LIGHTBOX MODAL --- */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 85vh;
+        border-radius: 4px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: 300;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+        color: var(--accent-color);
+    }
+
+    /* --- RESPONSIVE MOBILE STYLES --- */
+    @media (max-width: 900px) {
+        .artist-hero {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding-top: 3rem;
+        }
+
+        .artist-photo-frame {
+            height: 380px;
+        }
+
+        .artist-name {
+            font-size: 2.8rem;
+        }
+
+        .footer-container {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .exhibition-item {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .exhibition-type {
+            justify-self: start;
+            margin-top: 0.4rem;
+        }
+    }
+</style>
+
+
+<!-- NAVBAR -->
+<header>
+    <div class="nav-container">
+        <div class="brand-logo">Riyanto</div>
+        <nav>
+            <ul>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#galeri">Galeri Karya</a></li>
+                <li><a href="#pameran">Pameran</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+    <title>Portofolio</title>
+</header>
+
+<!-- PROFIL SENIMAN (HERO SECTION WITH PHOTO) -->
+<section class="artist-hero" id="profil">
+    <div class="artist-photo-container">
+        <div class="artist-photo-frame">
+            <!-- GANTI LINK GAMBAR DI BAWAH DENGAN FOTO DIRI ANDA -->
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800" alt="Foto Profil Seniman">
+        </div>
+        <div class="photo-tag">Studio & Kanvas</div>
+    </div>
+
+    <div class="artist-bio">
+        <span class="artist-label">Seniman Lukis / Fine Artist</span>
+        <h1 class="artist-name">[Nama Lengkap Anda]</h1>
+        
+        <p class="artist-statement">
+            "Melalui perpaduan tekstur dan warna, saya berusaha mengeksplorasi batas antara perasaan manusia, memori, dan keindahan alam."
+        </p>
+
+        <p class="artist-description">
+            Berbasis di [Kota Anda], saya berfokus pada media lukis cat minyak dan akrilik. Setiap karya diciptakan dengan pendekatan intuitif untuk membangun koneksi emosional dengan penikmatnya.
+        </p>
+
+        <div class="artist-stats">
+            <div class="stat-item">
+                <h4>8+</h4>
+                <p>Tahun Berkarya</p>
+            </div>
+            <div class="stat-item">
+                <h4>45+</h4>
+                <p>Lukisan Terkoleksi</p>
+            </div>
+            <div class="stat-item">
+                <h4>12</h4>
+                <p>Pameran Seni</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALERI KARYA UTAMA -->
+<section class="gallery-section" id="galeri">
+    <div class="section-header">
+        <h2>Karya Pilihan</h2>
+        <p>Jelajahi koleksi lukisan asli. Klik pada gambar untuk memperbesar detail lukisan.</p>
+    </div>
+
+    <!-- FILTER KATEGORI -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGallery('all')">Semua Karya</button>
+        <button class="filter-btn" onclick="filterGallery('oil')">Cat Minyak</button>
+        <button class="filter-btn" onclick="filterGallery('acrylic')">Akrilik</button>
+        <button class="filter-btn" onclick="filterGallery('watercolor')">Cat Air</button>
+    </div>
+
+    <!-- GRID GALERI -->
+    <div class="gallery-grid">
+
+        <!-- Karya 1 -->
+        <article class="art-card" data-category="oil">
+            <div class="art-img-wrapper" onclick="openModal('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=1000')">
+                <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=800" alt="Goresan Fajar" class="art-img">
+                <div class="art-overlay">
+                    <span class="overlay-text">🔍 Perbesar Lukisan</span>
+                </div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">Goresan Fajar</h3>
+                <p class="art-meta">Cat Minyak di Kanvas | 100 x 120 cm (2025)</p>
+                <p class="art-desc">Eksplorasi ketenangan suasana pagi hari melalui perpaduan gradasi warna hangat dan sapuan kuas berlapis.</p>
+                <a href="https://wa.me/6288991089019?text=Halo,%20saya%20tertarik%20dengan%20lukisan%20'Goresan%20Fajar'" target="_blank" class="btn-inquire">Tanyakan Karya ini</a>
+            </div>
+        </article>
+
+        <!-- Karya 2 -->
+        <article class="art-card" data-category="acrylic">
+            <div class="art-img-wrapper" onclick="openModal('https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=1000')">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800" alt="Harmoni Abstrak" class="art-img">
+                <div class="art-overlay">
+                    <span class="overlay-text">🔍 Perbesar Lukisan</span>
+                </div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">Harmoni Abstrak</h3>
+                <p class="art-meta">Akrilik di Kanvas | 80 x 80 cm (2024)</p>
+                <p class="art-desc">Refleksi dinamika kehidupan perkotaan yang dituangkan dalam komposisi garis tegas dan tekstur tebal.</p>
+                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20lukisan%20'Harmoni%20Abstrak'" target="_blank" class="btn-inquire">Tanyakan Karya ini</a>
+            </div>
+        </article>
+
+        <!-- Karya 3 -->
+        <article class="art-card" data-category="watercolor">
+            <div class="art-img-wrapper" onclick="openModal('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=1000')">
+                <img src="assets/img/Gambar1.jpg" alt="Bayang & Sunyi" class="art-img">
+                <div class="art-overlay">
+                    <span class="overlay-text">🔍 Perbesar Lukisan</span>
+                </div>
+            </div>
+            <div class="art-info">
+                <h3 class="art-title">Bayang & Sunyi</h3>
+                <p class="art-meta">Cat Air di Kertas | 50 x 70 cm (2024)</p>
+                <p class="art-desc">Menggunakan teknik transparent wash untuk menciptakan efek kedalaman, keheningan, dan perasaan nostalgia.</p>
+                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20lukisan%20'Bayang%20%26%20Sunyi'" target="_blank" class="btn-inquire">Tanyakan Karya ini</a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- REKAM JEJAK & PAMERAN -->
+<section class="exhibitions-section" id="pameran">
+    <div class="exhibitions-container">
+        <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
+            <h2>Rekam Jejak & Pameran</h2>
+            <p>Riwayat pameran seni rupa dan kegiatan pameran publik.</p>
+        </div>
+
+        <div class="exhibition-list">
+            <div class="exhibition-item">
+                <div class="exhibition-year">2025</div>
+                <div>
+                    <div class="exhibition-title">Pameran Bersama "Warna Nusantara"</div>
+                    <div class="exhibition-venue">Galeri Nasional Indonesia, Jakarta</div>
+                </div>
+                <div class="exhibition-type">Pameran Bersama</div>
+            </div>
+
+            <div class="exhibition-item">
+                <div class="exhibition-year">2024</div>
+                <div>
+                    <div class="exhibition-title">Pameran Tunggal "Jejak Jiwa"</div>
+                    <div class="exhibition-venue">Taman Ismail Marzuki, Jakarta</div>
+                </div>
+                <div class="exhibition-type">Pameran Tunggal</div>
+            </div>
+
+            <div class="exhibition-item">
+                <div class="exhibition-year">2023</div>
+                <div>
+                    <div class="exhibition-title">Festival Seni Rupa Kontemporer</div>
+                    <div class="exhibition-venue">Gedung Kesenian, Yogyakarta</div>
+                </div>
+                <div class="exhibition-type">Festival</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER & KONTAK -->
+<footer id="kontak">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>[Nama Anda]</h3>
+            <p>Terbuka untuk kolaborasi pameran, komisi lukisan khusus, dan koleksi pribadi.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Studio / Kontak</h4>
+            <ul class="footer-links">
+                <li><a href="#">📍 [Kota Studio Anda, Indonesia]</a></li>
+                <li><a href="https://wa.me/6288991089019">📱 +62 88991089019</a></li>
+                <li><a href="mailto:refanochotibulu@gmail.com">✉️ refanochotibulu@gmail.com</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Media Sosial</h4>
+            <ul class="footer-links">
+                <li><a href="https://instagram.com" target="_blank">Instagram Portfolio</a></li>
+                <li><a href="https://youtube.com" target="_blank">YouTube Process Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy; 2026 Riyanto. All rights reserved. Designed for Fine Arts & Exhibitions.
+    </div>
+</footer>
+
+<!-- LIGHTBOX MODAL (PREVIEW GAMBAR BESAR) -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="imgFull" alt="Detail Lukisan">
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    // Modal / Lightbox Fungsi
+    function openModal(imageSrc) {
+        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("imgFull").src = imageSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    // Filter Galeri
+    function filterGallery(category) {
+        const cards = document.querySelectorAll('.art-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        // Update status tombol aktif
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // Filter kartu lukisan
+        cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
